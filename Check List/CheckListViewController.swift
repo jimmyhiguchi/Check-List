@@ -8,13 +8,13 @@
 
 import UIKit
 
-class CheckListViewController: UITableViewController, AddItemViewControllerDelegate {
+class CheckListViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailView) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: CheckListItem) {
+    func itemDetailViewController(_ controller: ItemDetailView, didFinishAdding item: CheckListItem) {
         
         let newIndexRow = items.count
         items.append(item)
@@ -26,6 +26,16 @@ class CheckListViewController: UITableViewController, AddItemViewControllerDeleg
         navigationController?.popViewController(animated: true)
     }
     
+    func itemDetailViewController(_ controller: ItemDetailView, didFinishEditing item: CheckListItem) {
+        if let index = items.index(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+                if let cell = tableView.cellForRow(at: indexPath) {
+                    configureText(for: cell, with: item)
+                }
+            
+        }
+        navigationController?.popViewController(animated: true) 
+    }
     
     let titles = ["Eat your feet", "Pick your nose", "Fall down", "Get back up", "Sleep on nails"]
     
@@ -86,8 +96,15 @@ class CheckListViewController: UITableViewController, AddItemViewControllerDeleg
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItem" {
-            let controller = segue.destination as! AddItemViewController
+            let controller = segue.destination as! ItemDetailView
             controller.delegate = self
+        } else if segue.identifier == "EditItem" {
+            let controller = segue.destination as! ItemDetailView
+            controller.delegate = self
+            
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.itemToEdit = items[indexPath.row]
+            }
         }
     }
    

@@ -47,7 +47,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="hOH-DN-4AZ" kind="show" trigger="accessoryAction" id="fxe-0m-vaN"/>
+                                    <segue destination="hOH-DN-4AZ" kind="show" identifier="EditItem" trigger="accessoryAction" id="fxe-0m-vaN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -71,7 +71,7 @@
         <!--Add Item-->
         <scene sceneID="s1B-VT-NRs">
             <objects>
-                <tableViewController id="hOH-DN-4AZ" customClass="AddItemViewController" customModule="Check_List" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="hOH-DN-4AZ" customClass="ItemDetailView" customModule="Check_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="RGq-RO-vaI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
                                 <action selector="cancel:" destination="hOH-DN-4AZ" id="8VV-a7-e84"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="Lxq-mH-kpx">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="Lxq-mH-kpx">
                             <connections>
                                 <action selector="done:" destination="hOH-DN-4AZ" id="6ZH-eT-gVY"/>
                             </connections>
@@ -150,6 +150,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Gzi-ZU-ygj"/>
+        <segue reference="fxe-0m-vaN"/>
     </inferredMetricsTieBreakers>
 </document>
